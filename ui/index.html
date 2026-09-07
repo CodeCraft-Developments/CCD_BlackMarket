@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Market</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="app" class="shell" aria-hidden="true">
+        <section class="market-window">
+            <header class="topbar">
+                <div class="brand-mark">BM</div>
+                <div class="brand-copy">
+                    <div id="market-title" class="eyebrow">BLACK MARKET</div>
+                    <div id="market-subtitle" class="subtitle">Private supply channel</div>
+                </div>
+                <div class="header-status"><span class="pulse"></span> PRIVATE NETWORK</div>
+                <button id="close-button" class="close-button" aria-label="Close">×</button>
+            </header>
+
+            <div class="content">
+                <aside class="sidebar">
+                    <div class="section-label">CATALOGUE</div>
+                    <button class="category active" data-category="all">All inventory <span id="all-count">0</span></button>
+                    <div id="category-list"></div>
+                    <div class="sidebar-footer"><span class="tiny-dot"></span> stock resets on restart</div>
+                </aside>
+
+                <section class="catalogue">
+                    <div class="catalogue-head">
+                        <div>
+                            <div class="section-label">AVAILABLE GOODS</div>
+                            <h1>Choose your supply.</h1>
+                        </div>
+                        <label class="search"><span>⌕</span><input id="search" type="text" placeholder="Search inventory"></label>
+                    </div>
+                    <div id="notice" class="notice"></div>
+                    <div id="items" class="items"></div>
+                    <div id="empty" class="empty" hidden>No goods match your search.</div>
+                </section>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function () {
+            const resourceName = typeof GetParentResourceName === 'function' ? GetParentResourceName() : 'CCD_BlackMarket';
+            window.addEventListener('message', function (event) {
+                if (!event.data || event.data.action !== 'open') return;
+                const app = document.getElementById('app');
+                app.style.display = 'flex';
+                app.classList.add('visible');
+                app.setAttribute('aria-hidden', 'false');
+            });
+            fetch('https://' + resourceName + '/ready', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: '{}'
+            }).catch(function () {});
+        }());
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
