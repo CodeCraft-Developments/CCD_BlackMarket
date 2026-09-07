@@ -1,7 +1,5 @@
 
 local checkVersion = function(err, response, headers)
-    if not Config.Debug then return end
-
     local versionNumber = response:match('version%s*[\'"]([%d%.]+)[\'"]')
     local resourceName = GetCurrentResourceName() -- the resource name
     local curVersion = GetResourceMetadata(GetCurrentResourceName(), 'version') -- make sure the "version" file actually exists in your resource root!
@@ -19,6 +17,6 @@ end
  
 AddEventHandler('onResourceStart', function(resource)
    if resource ~= GetCurrentResourceName() then return end
-   local path = "https://raw.githubusercontent.com/CodeCraft-Developments/CCD-Library/main/fxmanifest.lua" -- your git user/repo path
+   local path = "https://raw.githubusercontent.com/CodeCraft-Developments/CCD_BlackMarket/refs/heads/main/fxmanifest.lua" -- your git user/repo path
    PerformHttpRequest(path, checkVersion)
 end)
