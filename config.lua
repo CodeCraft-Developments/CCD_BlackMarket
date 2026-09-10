@@ -25,10 +25,10 @@ Config.Ped = {
 
 -- Four dealer locations. Change the model above or add/remove locations as needed.
 Config.Locations = {
+    vector4(-3047.31, 585.42, 7.91, 199.84),
     vector4(1240.72, -3178.54, 7.10, 91.73),
     vector4(-1171.42, -1572.08, 4.66, 214.58),
     vector4(1703.84, 4920.71, 42.06, 323.11),
-    vector4(-3047.31, 585.42, 7.91, 199.84),
 }
 
 -- Buy-only catalogue. The server validates every item and price from this table.
